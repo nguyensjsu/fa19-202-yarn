@@ -16,6 +16,12 @@ public class DefaultState extends MagicState
         super(msm);
     }
     
+    public void doEffect(Dog yarn)
+    {
+        yarn.speedUpdate= 0;
+        yarn.invincible= false;
+        
+    }
 
 
 }

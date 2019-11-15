@@ -18,5 +18,10 @@ public class InvincibleState extends MagicState
     public States getState()
     {
         return States.STAR;
-    }  
+    }
+    
+    public void doEffect(Dog yarn)
+    {
+        yarn.invincible = true;
+    }
 }

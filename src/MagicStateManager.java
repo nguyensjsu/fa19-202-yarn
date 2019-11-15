@@ -61,5 +61,9 @@ public class MagicStateManager
         return currentState.getState();
     }
     
+    public void doEffect(Dog yarn)
+    {
+        currentState.doEffect(yarn);
+    }    
  
 }

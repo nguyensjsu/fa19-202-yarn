@@ -15,10 +15,17 @@ public class SpeedDownState extends MagicState
         super(msm);
     }
     
-        public States getState()
+    public States getState()
     {
         return States.DOWN;
-    }  
+    } 
+    
+    public void doEffect(Dog yarn)
+    {
+        if(yarn.speed > 1)
+             yarn.speedUpdate= -1;
+    }
+    
 
 
 }

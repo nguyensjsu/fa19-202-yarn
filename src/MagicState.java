@@ -57,5 +57,9 @@ public class MagicState implements IMagicState
     public States getState()
     {
         return States.OFF;
-    }    
+    }
+    
+    public void doEffect(Dog yarn)
+    {
+    }
 }    

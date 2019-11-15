@@ -20,6 +20,11 @@ public class SpeedUpState extends MagicState
     {
         return States.UP;
     }  
+    
+    public void doEffect(Dog yarn)
+    {
+        yarn.speedUpdate++;
+    }
 
 
 }
