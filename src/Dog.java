@@ -12,16 +12,33 @@ public class Dog extends Actor
      * Act - do whatever the Dog wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int x=4;
+    int speed=4;
+    MagicStateManager magicM = new MagicStateManager();
+    int timer = 0;                //set timer to 2 once touch a PowerUp
+    boolean invincible = false;  // like in Super Mario, if invincible, nothing happens when touch wall and bomb  
+    int speedUpdate = 0;           //Temporarily speed effect applied on Dog
+    
     public void act() 
     {
+       
+        magicM.doEffect(this);
         moveAndTurn();
         eat();
+        
+        if (timer> 0)
+        {
+            timer--;
+        }
+        
+        if (timer == 0){  
+            magicM.setState(MagicState.States.OFF);
+        }
+        
     }
     
     public void moveAndTurn()
     {
-        move(x);
+        move(speed+speedUpdate);
         if(Greenfoot.isKeyDown("left"))
         {
             
@@ -87,7 +104,7 @@ public class Dog extends Actor
             World world;
             world=getWorld();
             world.removeObject(bomb);
-            x++;            
+            speed++;            
             yarnworld.addObject(new Bomb(), Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
         }
     }
