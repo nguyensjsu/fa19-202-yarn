@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+//import java.awt.Color;
 
 /**
  * Write a description of class CrabWorld here.
@@ -20,14 +21,13 @@ public class YarnWorld extends World
         prepare();
         theCounter=new Counter();
         addObject(theCounter, 10, getHeight()-10);
-        
     }
+    
     public Counter getCounter()
     {
         return theCounter;
     }
-    
-    
+
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -49,7 +49,6 @@ public class YarnWorld extends World
         wall.setLocation(345,444);
         bomb.setLocation(237,306);
         dog.setLocation(76,444);
-
         dog.setLocation(81,389);
     }
 }
