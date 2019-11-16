@@ -4,20 +4,20 @@ import greenfoot.*;
  * @version 1.0 Nov 14
  */
 
-public class UserName extends ScoreBoardComponent {
+public class Banner extends ScoreBoardComponent {
 
-    private String name;
+    private String content;
     private int x;
     private int y;
 
-    public UserName(String name, int x, int y) {
-        this.name = name;
+    public Banner(String content, int x, int y) {
+        this.content = content;
         this.x = x;
         this.y = y;
     }
 
-	public void printDescription() {
-    	getWorld().showText(name, x, y);
+    public void printDescription() {
+        getWorld().showText(content, x, y);
     }
 
     public void addChild(ScoreBoardComponent c) {
@@ -28,6 +28,6 @@ public class UserName extends ScoreBoardComponent {
     }
 
     public ScoreBoardComponent getChild(int i){
-    	return null;
+        return null;
     }
 }
