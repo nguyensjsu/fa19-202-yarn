@@ -8,18 +8,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameOver extends World
 {
-    int score;
     /**
      * Constructor for objects of class GameOver.
      *
      */
     private ScoreBoardComponent scoreboardComponent;
+    private int score;
+    private String name;
 
     public GameOver(int counter)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(560, 560, 1); 
-        String input = Greenfoot.ask("What is your name ?");
+        name = Greenfoot.ask("What is your name ?");
         scoreboardComponent = new ScoreBoardComposite();
         //System.out.println(input);
         score = counter;
@@ -38,13 +39,21 @@ public class GameOver extends World
 
     private void prepare() {
         ScoreBoardComponent composite = new ScoreBoardComposite();
-        ScoreBoardComponent name = new UserName();
-        ScoreBoardComponent userScore = new Score(score, 100, 100);
-        addObject(composite, 200, 200);
-        addObject(name, 0, 0);
+        ScoreBoardComponent background = new ScoreBoardBackground();
+        ScoreBoardComponent banner = new Banner("ScoreBoard", 300, 50);
+        ScoreBoardComponent userName = new UserName(name, 100, 100);
+        ScoreBoardComponent userScore = new Score(score, 200, 100);
+
+        
+        addObject(composite, 0, 0);
+        addObject(banner, 0, 0);
+        addObject(userName, 0, 0);
         addObject(userScore, 0, 0);
-        composite.addChild(name);
+        addObject(background, 0, 0);
+        composite.addChild(background);
+        composite.addChild(userName);
         composite.addChild(userScore);
+        composite.addChild(banner);
         scoreboardComponent.addChild(composite);
         scoreboardComponent.printDescription();
     }
