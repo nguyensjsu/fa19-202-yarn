@@ -16,11 +16,17 @@ public class SpeedUpState extends MagicState
         super(msm);
     }
     
+    /**
+     * override getState()
+     */
     public States getState()
     {
         return States.UP;
     }  
     
+    /**
+     * override doEffect()
+     */
     public void doEffect(Dog yarn)
     {
         yarn.speedUpdate++;

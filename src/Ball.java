@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Ball extends Actor
+public class Ball extends Item
 {
     /**
      * Act - do whatever the Ball wants to do. This method is called whenever
@@ -15,6 +15,9 @@ public class Ball extends Actor
     public void act() 
     {
         // Add your action code here.
+        if (isTouching(Dog.class)) {
+            super.setScoreSpeed(10, 0);
+        }
     }    
     protected void addedToWorld(World world)
     {

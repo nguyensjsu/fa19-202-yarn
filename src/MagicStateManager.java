@@ -6,64 +6,98 @@
  */
 public class MagicStateManager  
 {
-    // instance variables - replace the example below with your own
     private MagicState defaultState;
     private MagicState upState;
     private MagicState downState;
     private MagicState starState;
     private MagicState currentState;
-
-
+    private DisplayComponent display;
+    
     /**
      * Constructor for objects of class StateManager
      */
     public MagicStateManager()
     {
-        defaultState = new DefaultState(this);
-        upState = new SpeedUpState(this);
-        downState = new SpeedDownState(this);
-        starState = new InvincibleState(this);
-        currentState = defaultState;
+        this.defaultState = new DefaultState(this);
+        this.upState = new SpeedUpState(this);
+        this.downState = new SpeedDownState(this);
+        this.starState = new InvincibleState(this);
+        this.currentState = this.defaultState;
     }
     
+    /**
+     * reset to default state
+     */
     public void reset()
     {
-        currentState.reset();
+        this.currentState.reset();
     }
     
+    /**
+     * switch to speedup
+     */
     public void speedup()
     {
-        currentState.toSpeedUp();
+        this.currentState.toSpeedUp();
     }
     
+    /**
+     * switch to speeddown
+     */
     public void speeddown()
     {
-        currentState.toSpeedDown();
+        this.currentState.toSpeedDown();
     }
     
+    /**
+     * switch to invincible
+     */
     public void invincible()
     {
-        currentState.toInvincible();
+        this.currentState.toInvincible();
     } 
     
+    /**
+     * set State (called by each state)
+     */
     public void setState(MagicState.States nextstate)
     {
         switch(nextstate) {
-            case UP: currentState = upState; break;
-            case DOWN: currentState = downState; break;
-            case STAR: currentState = starState; break;
-            case OFF: currentState = defaultState; break;
+            case UP: this.currentState = upState; break;
+            case DOWN: this.currentState = downState; break;
+            case STAR: this.currentState = starState; break;
+            case OFF: this.currentState = defaultState; break;
         }
-    }    
-
+    } 
+    
+    /**
+     * get current magic state
+     */
     public MagicState.States getCurrentState()
     {
-        return currentState.getState();
+        return this.currentState.getState();
     }
     
+     /**
+     * Apply current magic state on yarn
+     */
     public void doEffect(Dog yarn)
     {
-        currentState.doEffect(yarn);
+        this.currentState.doEffect(yarn);
     }    
- 
+    /**
+     * attach display observer 
+     */
+    public void attach(DisplayComponent d_status)
+    {
+        this.display = d_status;
+    }
+    
+    /**
+     * Notify Magic Status Display
+     */
+    public void notifyDisplay()
+    {
+        this.display.updateMagicStatus(this.currentState.getState());
+    }    
 }
