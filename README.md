@@ -13,7 +13,7 @@ Once upon a time, there is a naughty dog named Yarn. He loves finding balls in h
 
 + When Yarn hits a ball, player gets **10** scores and another ball is created randomly in the room.
 + When Yarn hits a bomb, player gets **-10** scores and Yarn’s speed get increased and another Bomb is created randomly in the room.
-+ Magic States (```SPEEDUP```, ```SPEEDDOWN```, ```INVINCIBLE```) are ramdomly attached to ball and bomb, which cause temporary state change on Yarn **for 2 seconds**. 
++ Magic States (```SPEEDUP```, ```SPEEDDOWN```, ```INVINCIBLE```) are randomly attached to ball and bomb, which cause temporary state change on Yarn **for 2 seconds**. 
 + There are walls/obstacle in the room. When Yarn hits a wall or the border of the room, game ends.
 
 Start Page (**Add Screenshot here**):
@@ -40,4 +40,4 @@ Score Board:
 
 #### Observer Pattern
 
-#### Composiste Pattern
+#### Composite Pattern
