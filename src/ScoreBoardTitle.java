@@ -4,17 +4,18 @@ import greenfoot.*;
  * @version 1.0 Nov 14
  */
 
-public class Banner extends ScoreBoardComponent {
+public class ScoreBoardTitle extends ScoreBoardComponent {
 
-    private String content;
+    private GreenfootImage image;
 
-    public Banner(String content) {
-        this.content = content;
+    public ScoreBoardTitle() {
+        this.image = new GreenfootImage("title.png");
+        this.image.scale(200,80);
+        setImage(this.image);
     }
 
     public void printDescription() {
-        Color trans = new Color(0,0,0,0);
-        setImage (new GreenfootImage (content, 50, Color.ORANGE, trans));
+        
     }
 
     public void addChild(ScoreBoardComponent c) {

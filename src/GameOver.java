@@ -39,24 +39,30 @@ public class GameOver extends World
         }
     }
 
+    // get banner content if user wins or not
+    private String getBanner(int score) {
+        return score > 15 ? "Congrats! You Win!" : "Sorry. You lose!";
+    }
+
     private void prepare() {
         ScoreBoardComponent composite = new ScoreBoardComposite();
         ScoreBoardComponent background = new ScoreBoardBackground();
-        ScoreBoardComponent banner = new Banner("ScoreBoard", 300, 50);
-        ScoreBoardComponent userName = new UserName(name, 100, 100);
-        ScoreBoardComponent userScore = new Score(score, 200, 100);
+        ScoreBoardComponent title = new ScoreBoardTitle();
+        ScoreBoardComponent banner = new Banner(getBanner(score));
+        ScoreBoardComponent userName = new UserName(name);
+        ScoreBoardComponent userScore = new Score(score);
         button = new ScoreBoardButton();
-
         
         addObject(composite, 0, 0);
-        addObject(banner, 0, 0);
-        addObject(userName, 0, 0);
-        addObject(userScore, 0, 0);
-        
         addObject(background, 0, 0);
-        addObject(button, 250, 400);
+        addObject(title, 250, 50);
+        addObject(banner, 280, 200);
+        addObject(userScore, 250, 350);
+        addObject(userName, 250, 300);
+        addObject(button, 250, 450);
 
         composite.addChild(background);
+        composite.addChild(title);
         composite.addChild(userName);
         composite.addChild(userScore);
         composite.addChild(banner);

@@ -10,7 +10,7 @@ public class ScoreBoardBackground extends ScoreBoardComponent {
 
     public ScoreBoardBackground() {
         this.image = new GreenfootImage("scoreboardbackground.png");
-        this.image.scale(1200, 1200);
+        this.image.scale(1200,1200);
         setImage(this.image);
     }
 
