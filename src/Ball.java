@@ -16,4 +16,13 @@ public class Ball extends Actor
     {
         // Add your action code here.
     }    
+    protected void addedToWorld(World world)
+    {
+        while (isTouching(Bomb.class) || isTouching(Wall.class) || isTouching(WallVertical.class) || isTouching(Counter.class))
+        {
+            int x = Greenfoot.getRandomNumber(world.getWidth());
+            int y = Greenfoot.getRandomNumber(world.getHeight());
+            setLocation(x, y);
+        }
+    }
 }
