@@ -7,17 +7,18 @@ import greenfoot.*;
 public class UserName extends ScoreBoardComponent {
 
     private String name;
-    private int x;
-    private int y;
 
-    public UserName(String name, int x, int y) {
+    public UserName(String name) {
         this.name = name;
-        this.x = x;
-        this.y = y;
     }
 
 	public void printDescription() {
-    	getWorld().showText(name, x, y);
+        
+        String content = "Hi " + name;
+        Color trans = new Color(0,0,0,0);
+        setImage (new GreenfootImage (content, 30, Color.ORANGE, trans));
+
+    	//getWorld().showText(content, x, y);
     }
 
     public void addChild(ScoreBoardComponent c) {

@@ -7,19 +7,18 @@ import greenfoot.*;
 public class Score extends ScoreBoardComponent {
 
     private int score;
-    private int x;
-    private int y;
 
-    public Score(int score, int x, int y) {
+    public Score(int score) {
         this.score = score;
-        this.x = x;
-        this.y = y;
     }
 
     public void printDescription() {
-        getWorld().showText(String.valueOf(score), x, y);
         //getWorld().showText("test", 100, 100);
         //System.out.println(getWorld());
+        Color trans = new Color(0,0,0,0);
+        String content = "Your score is " + String.valueOf(score);
+        
+        setImage (new GreenfootImage (content, 30, Color.ORANGE, trans));
     }
 
     public void addChild(ScoreBoardComponent c) {
