@@ -14,12 +14,16 @@ public class InvincibleState extends MagicState
     {
         super(msm);
     }
-
+    /**
+     * override getState()
+     */
     public States getState()
     {
         return States.STAR;
     }
-    
+    /**
+     * override doEffect()
+     */
     public void doEffect(Dog yarn)
     {
         yarn.invincible = true;

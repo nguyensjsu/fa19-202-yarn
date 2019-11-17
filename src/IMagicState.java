@@ -1,5 +1,5 @@
 /**
- * Write a description of class IState here.
+ * Interface for MagicStates
  * 
  * @author Yu Zhao 
  * @version (a version number or a date)
