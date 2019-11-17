@@ -1,9 +1,16 @@
+
+
+
+
 /**
  * Parent Class: Magic State
  * 
  * @author Yu Zhao 
  * @version (a version number or a date)
  */
+
+import java.util.Random;
+
 public class MagicState implements IMagicState  
 {   
     MagicStateManager ms_manager;
@@ -12,8 +19,15 @@ public class MagicState implements IMagicState
     {
         UP, DOWN, OFF, STAR
     }
-    
     /**
+     * get a random Magic State
+     */
+    public static States getRandomState() {
+       int pick = new Random().nextInt(States.values().length);
+       return States.values()[pick];
+    }  
+    
+     /**
      * Constructor for objects of class MagicState
      */
     public MagicState(MagicStateManager msm)
