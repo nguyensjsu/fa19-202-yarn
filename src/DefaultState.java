@@ -15,7 +15,9 @@ public class DefaultState extends MagicState
     {
         super(msm);
     }
-    
+    /**
+     * override doEffect()
+     */
     public void doEffect(Dog yarn)
     {
         yarn.speedUpdate= 0;

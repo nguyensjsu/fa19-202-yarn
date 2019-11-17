@@ -1,14 +1,13 @@
 /**
- * Write a description of class MagicState here.
+ * Parent Class: Magic State
  * 
  * @author Yu Zhao 
  * @version (a version number or a date)
  */
 public class MagicState implements IMagicState  
-{
-    // instance variables - replace the example below with your own
+{   
     MagicStateManager ms_manager;
-    
+   
     public enum States
     {
         UP, DOWN, OFF, STAR
@@ -19,7 +18,7 @@ public class MagicState implements IMagicState
      */
     public MagicState(MagicStateManager msm)
     {
-        ms_manager = msm;
+        this.ms_manager = msm;
     }
 
     /**
@@ -27,7 +26,7 @@ public class MagicState implements IMagicState
      */
     public void reset()
     {
-        ms_manager.setState(States.OFF);
+        this.ms_manager.setState(States.OFF);
     }
     
     /**
@@ -35,7 +34,7 @@ public class MagicState implements IMagicState
      */
     public void toSpeedUp()
     {
-        ms_manager.setState(States.UP);
+        this.ms_manager.setState(States.UP);
     }
     
     /**
@@ -43,7 +42,7 @@ public class MagicState implements IMagicState
      */
     public void toSpeedDown()
     {
-        ms_manager.setState(States.DOWN);
+        this.ms_manager.setState(States.DOWN);
     }
     
     /**
@@ -51,14 +50,20 @@ public class MagicState implements IMagicState
      */
     public void toInvincible()
     {
-        ms_manager.setState(States.STAR);
+        this.ms_manager.setState(States.STAR);
     }
-    
+    /**
+     * get current State, default return is States.OFF
+     * to be overrided by child classes
+     */
     public States getState()
     {
         return States.OFF;
     }
     
+    /**
+     * Apply magic effect on Yarn
+     */
     public void doEffect(Dog yarn)
     {
     }

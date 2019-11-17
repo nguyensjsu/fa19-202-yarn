@@ -14,12 +14,17 @@ public class SpeedDownState extends MagicState
     {
         super(msm);
     }
-    
+    /**
+     * override getState()
+     */
     public States getState()
     {
         return States.DOWN;
     } 
     
+    /**
+     * override doEffect()
+     */
     public void doEffect(Dog yarn)
     {
         if(yarn.speed > 1)
