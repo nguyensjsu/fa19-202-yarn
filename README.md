@@ -30,7 +30,7 @@ Score Board:
 
 
 ### Design Overview:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/DesignDraft-v2.0.png)
 
 ### Key Design Features:
 
