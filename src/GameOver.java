@@ -15,6 +15,7 @@ public class GameOver extends World
     private ScoreBoardComponent scoreboardComponent;
     private int score;
     private String name;
+    private ScoreBoardComponent button;
 
     public GameOver(int counter)
     {    
@@ -28,9 +29,10 @@ public class GameOver extends World
         //showText("Sorry " + input +" GAME OVER\n\n Score = "+score+"\n\nPress n for new game", getWidth()/2, getHeight()/2);
         
     }
+
     public void act()
     {
-        if(Greenfoot.isKeyDown("n"))
+        if(Greenfoot.mouseClicked(button))
         {
            YarnWorld yarnworld = new YarnWorld();
            Greenfoot.setWorld(yarnworld);
@@ -43,17 +45,22 @@ public class GameOver extends World
         ScoreBoardComponent banner = new Banner("ScoreBoard", 300, 50);
         ScoreBoardComponent userName = new UserName(name, 100, 100);
         ScoreBoardComponent userScore = new Score(score, 200, 100);
+        button = new ScoreBoardButton();
 
         
         addObject(composite, 0, 0);
         addObject(banner, 0, 0);
         addObject(userName, 0, 0);
         addObject(userScore, 0, 0);
+        
         addObject(background, 0, 0);
+        addObject(button, 250, 400);
+
         composite.addChild(background);
         composite.addChild(userName);
         composite.addChild(userScore);
         composite.addChild(banner);
+        composite.addChild(button);
         scoreboardComponent.addChild(composite);
         scoreboardComponent.printDescription();
     }
