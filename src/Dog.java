@@ -43,68 +43,55 @@ public class Dog extends Actor
         {
             
             setRotation(180);
-            //move(x);
+            
         }
         if(Greenfoot.isKeyDown("right"))
         {
             
             setRotation(0);
-            //move(x);
+            
         }
         if(Greenfoot.isKeyDown("up"))
         {
             
             setRotation(270);
-            //move(x);
+            
         }
         if(Greenfoot.isKeyDown("down"))
         {
             
             setRotation(90);
-            //move(x);
+            
         }
     }   
     public void eat()
     {
         Actor ball;
         Actor bomb;
-        Actor wall;
-        Actor wallvertical;
+        YarnWorld yarnworld = (YarnWorld) getWorld();        
+        Counter counter = yarnworld.getCounter();        
+        if ((isTouching(Wall.class) || isTouching(WallVertical.class) || isAtEdge()) && invincible==false) 
+        {
+            
+            GameOver gameover = new GameOver(counter.getTotalCount());
+            Greenfoot.setWorld(gameover);
+        }
         ball = getOneObjectAtOffset(0, 0, Ball.class);
-        YarnWorld yarnworld = (YarnWorld) getWorld();
-        wall = getOneObjectAtOffset(0, 0, Wall.class);
-        wallvertical = getOneObjectAtOffset(0, 0, WallVertical.class);
-        Counter counter = yarnworld.getCounter();
-        
-        if (wall != null)
-        {
-            
-            GameOver gameover = new GameOver(counter.getTotalCount());
-            Greenfoot.setWorld(gameover);
-        }
-        if (wallvertical != null)
-        {
-            
-            GameOver gameover = new GameOver(counter.getTotalCount());
-            Greenfoot.setWorld(gameover);
-        }
         if (ball != null)
         {
-            World world;
-            world=getWorld();
-            world.removeObject(ball);
-              // get a reference to the world
-              // get a reference to the counter
+            yarnworld.removeObject(ball);
             counter.bumpCount(5);
+            timer=2;
+            magicM.setState(MagicState.getRandomState());
             yarnworld.addObject(new Ball(), Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
         }
         bomb = getOneObjectAtOffset(0, 0, Bomb.class);
         if (bomb != null)
         {
-            World world;
-            world=getWorld();
-            world.removeObject(bomb);
-            speed++;            
+            yarnworld.removeObject(bomb);
+            speed++;
+            timer=2;
+            magicM.setState(MagicState.getRandomState());
             yarnworld.addObject(new Bomb(), Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
         }
     }
