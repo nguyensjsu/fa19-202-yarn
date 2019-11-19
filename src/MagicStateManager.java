@@ -11,7 +11,7 @@ public class MagicStateManager
     private MagicState downState;
     private MagicState starState;
     private MagicState currentState;
-    private DisplayComponent display;
+    //private DisplayComponent display;
     
     /**
      * Constructor for objects of class StateManager
@@ -85,19 +85,5 @@ public class MagicStateManager
     {
         this.currentState.doEffect(yarn);
     }    
-    /**
-     * attach display observer 
-     */
-    public void attach(DisplayComponent d_status)
-    {
-        this.display = d_status;
-    }
-    
-    /**
-     * Notify Magic Status Display
-     */
-    public void notifyDisplay()
-    {
-        this.display.updateMagicStatus(this.currentState.getState());
-    }    
+   
 }
