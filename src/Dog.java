@@ -12,30 +12,18 @@ public class Dog extends Actor
      * Act - do whatever the Dog wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int speed=4;
+    public int speed=4;
     MagicStateManager magicM = new MagicStateManager();
     int timer = 0;                //set timer to 2 once touch a PowerUp
-    boolean invincible = false;  // like in Super Mario, if invincible, nothing happens when touch wall and bomb  
-    int speedUpdate = 0;           //Temporarily speed effect applied on Dog
+    public boolean invincible = false;  // like in Super Mario, if invincible, nothing happens when touch wall and bomb  
+    public int speedUpdate = 0;           //Temporarily speed effect applied on Dog
     
     public void act() 
     {
-       
-        magicM.doEffect(this);
         moveAndTurn();
         eat();
-        
-        if (timer> 0)
-        {
-            timer--;
-        }
-        
-        if (timer == 0){  
-            magicM.setState(MagicState.States.OFF);
-        }
-        
+        timerCountdown();
     }
-    
     public void moveAndTurn()
     {
         move(speed+speedUpdate);
@@ -76,24 +64,44 @@ public class Dog extends Actor
             GameOver gameover = new GameOver(counter.getTotalCount());
             Greenfoot.setWorld(gameover);
         }
+        else if ((isTouching(Wall.class) || isTouching(WallVertical.class)) && invincible==true) {
+            //do nothing
+        }
         ball = getOneObjectAtOffset(0, 0, Ball.class);
         if (ball != null)
         {
             yarnworld.removeObject(ball);
             counter.bumpCount(5);
-            timer=2;
-            magicM.setState(MagicState.getRandomState());
-            yarnworld.addObject(new Ball(), Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
+            timer=80;
+            Ball b = new Ball();
+            b.setDecorator(new PowerUpDecorator());
+            yarnworld.addObject(b, Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
         }
         bomb = getOneObjectAtOffset(0, 0, Bomb.class);
         if (bomb != null)
         {
             yarnworld.removeObject(bomb);
-            speed++;
-            timer=2;
-            magicM.setState(MagicState.getRandomState());
-            yarnworld.addObject(new Bomb(), Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
+            timer=80;
+            Bomb b = new Bomb();
+            b.setDecorator(new PowerUpDecorator());
+            yarnworld.addObject(b, Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
         }
     }
-   
+    public void timerCountdown() {
+        if (timer > 0) {
+            if (invincible == true) {
+                // image slightly transparent when it's invincible
+                getImage().setTransparency(100);
+            }
+            else {
+                getImage().setTransparency(255);
+            }
+            timer--;
+            if (timer == 0) {
+                getImage().setTransparency(255);
+                magicM.setState(MagicState.States.OFF);
+                magicM.doEffect(this);
+            }
+        }
+    }
 }

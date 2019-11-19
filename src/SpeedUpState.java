@@ -30,6 +30,7 @@ public class SpeedUpState extends MagicState
     public void doEffect(Dog yarn)
     {
         yarn.speedUpdate++;
+        yarn.invincible = false;
     }
 
 

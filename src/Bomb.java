@@ -16,7 +16,7 @@ public class Bomb extends Item
     public void act() 
     {
         // Add your action code here.
-        
+        touched();
     }  
     protected void addedToWorld(World world)
     {
