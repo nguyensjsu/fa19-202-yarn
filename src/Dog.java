@@ -18,6 +18,7 @@ public class Dog extends Actor
     public boolean invincible = false;  // like in Super Mario, if invincible, nothing happens when touch wall and bomb  
     public int speedUpdate = 0;           //Temporarily speed effect applied on Dog
     
+    private DisplayComponent display;  //observer  
     public void act() 
     {
         moveAndTurn();
@@ -104,4 +105,21 @@ public class Dog extends Actor
             }
         }
     }
+    
+    //Work as subject
+    /**
+     * attach display observer 
+     */
+    public void attach(DisplayComponent d_status)
+    {
+        this.display = d_status;
+    }
+    
+    /**
+     * Notify Magic Status Display
+     */
+    public void notifyDisplay()
+    {
+        this.display.updateMagicStatus(magicM.getCurrentState());
+    }  
 }
