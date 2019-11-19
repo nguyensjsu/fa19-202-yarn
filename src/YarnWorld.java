@@ -10,7 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class YarnWorld extends World
 {
     private Counter theCounter;
-    
+    private Dog dog;
     /**
      * Constructor for objects of class CrabWorld.
      * 
@@ -27,18 +27,22 @@ public class YarnWorld extends World
     {
         return theCounter;
     }
-
+    public Dog getDog() {
+        return dog;
+    }
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
      */
     private void prepare()
     {
-        Bomb bomb = new Bomb();
-        addObject(bomb,376,414);        
-        Dog dog = new Dog();
+        dog = new Dog();
         addObject(dog,108,228);
+        Bomb bomb = new Bomb();
+        bomb.setDecorator(new PowerUpDecorator());
+        addObject(bomb,376,414);        
         Ball ball = new Ball();
+        ball.setDecorator(new PowerUpDecorator());
         addObject(ball,367,138);
         Wall wall = new Wall();
         addObject(wall,367,444);
