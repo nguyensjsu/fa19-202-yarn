@@ -1,0 +1,33 @@
+<component name="libraryTable">
+  <library name="bluej">
+    <CLASSES>
+      <root url="jar://C:/Program Files/Greenfoot/lib/bluej.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/bluejcore.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/bluejeditor.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/bluejext.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/classgraph-4.2.6.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/commons-logging-api-1.1.2.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/diffutils-1.2.1.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/guava-17.0.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/hamcrest-core-1.3.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/httpclient-4.1.1.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/httpcore-4.1.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/httpmime-4.1.1.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/jl1.0.1.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/junit-4.11.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/lang-stride.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/nsmenufx-2.1.4.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/opencsv-2.3.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/richtextfx-fat-0.9.0.jar!/" />
+      <root url="jar://C:/Program Files/Greenfoot/lib/xom-1.2.9.jar!/" />
+      <root url="file://C:/Program Files/Greenfoot/lib" />
+      <root url="file://C:/Program Files/Greenfoot/lib/greenfoot" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://C:/Program Files/Greenfoot/lib/english/greenfoot/api" />
+      <root url="file://C:/Program Files/Greenfoot/lib/greenfoot/common" />
+    </SOURCES>
+    <jarDirectory url="file://C:/Program Files/Greenfoot/lib" recursive="false" />
+  </library>
+</component>

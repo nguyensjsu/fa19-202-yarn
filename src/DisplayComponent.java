@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.Actor;
 
 /**
  * Write a description of class DisplayComponent here.

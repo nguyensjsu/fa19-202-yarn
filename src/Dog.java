@@ -13,7 +13,16 @@ public class Dog extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public int speed=4;
-    MagicStateManager magicM = new MagicStateManager();
+
+    public MagicStateManager getMagicM() {
+        return magicM;
+    }
+
+    public void setMagicM(MagicStateManager magicM) {
+        this.magicM = magicM;
+    }
+
+    MagicStateManager magicM;
     int timer = 0;                //set timer to 2 once touch a PowerUp
     public boolean invincible = false;  // like in Super Mario, if invincible, nothing happens when touch wall and bomb  
     public int speedUpdate = 0;           //Temporarily speed effect applied on Dog
@@ -51,7 +60,7 @@ public class Dog extends Actor
             setRotation(90);
             
         }
-    }   
+    }
     public void eat()
     {
         Actor ball;

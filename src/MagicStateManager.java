@@ -11,7 +11,8 @@ public class MagicStateManager
     private MagicState downState;
     private MagicState starState;
     private MagicState currentState;
-    private DisplayComponent display;
+
+    private MagicStatusDisplay magicStatusDisplay;
     
     /**
      * Constructor for objects of class StateManager
@@ -31,6 +32,7 @@ public class MagicStateManager
     public void reset()
     {
         this.currentState.reset();
+        this.notifyDisplay();
     }
     
     /**
@@ -39,6 +41,7 @@ public class MagicStateManager
     public void speedup()
     {
         this.currentState.toSpeedUp();
+        this.notifyDisplay();
     }
     
     /**
@@ -47,6 +50,7 @@ public class MagicStateManager
     public void speeddown()
     {
         this.currentState.toSpeedDown();
+        this.notifyDisplay();
     }
     
     /**
@@ -55,6 +59,7 @@ public class MagicStateManager
     public void invincible()
     {
         this.currentState.toInvincible();
+        this.notifyDisplay();
     } 
     
     /**
@@ -68,6 +73,8 @@ public class MagicStateManager
             case STAR: this.currentState = starState; break;
             case OFF: this.currentState = defaultState; break;
         }
+
+        this.notifyDisplay();
     } 
     
     /**
@@ -88,9 +95,9 @@ public class MagicStateManager
     /**
      * attach display observer 
      */
-    public void attach(DisplayComponent d_status)
+    public void attach(MagicStatusDisplay d_status)
     {
-        this.display = d_status;
+        this.magicStatusDisplay = d_status;
     }
     
     /**
@@ -98,6 +105,9 @@ public class MagicStateManager
      */
     public void notifyDisplay()
     {
-        this.display.updateMagicStatus(this.currentState.getState());
-    }    
+        this.magicStatusDisplay.updateMagicStatus(this.currentState.getState());
+
+    }
+
+
 }

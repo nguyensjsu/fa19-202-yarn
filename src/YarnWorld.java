@@ -11,6 +11,9 @@ public class YarnWorld extends World
 {
     private Counter theCounter;
     private Dog dog;
+    private MagicStateManager ms_manager;
+    private MagicStatusDisplay magicStatusDisplay;
+
     /**
      * Constructor for objects of class CrabWorld.
      * 
@@ -37,6 +40,11 @@ public class YarnWorld extends World
     private void prepare()
     {
         dog = new Dog();
+        this.ms_manager = new MagicStateManager();
+        this.magicStatusDisplay = new MagicStatusDisplay();
+        this.ms_manager.attach(this.magicStatusDisplay);
+        this.dog.setMagicM(ms_manager);
+        addObject(this.magicStatusDisplay, 80, getHeight() - 10);
         addObject(dog,108,228);
         Bomb bomb = new Bomb();
         bomb.setDecorator(new PowerUpDecorator());
