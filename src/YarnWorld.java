@@ -11,6 +11,8 @@ public class YarnWorld extends World
 {
     private Counter theCounter;
     private Dog dog;
+    private Ball ball;
+    private Bomb bomb;
     /**
      * Constructor for objects of class CrabWorld.
      * 
@@ -30,6 +32,12 @@ public class YarnWorld extends World
     public Dog getDog() {
         return dog;
     }
+    public Ball getBall() {
+        return ball;
+    }
+    public Bomb getBomb() {
+        return bomb;
+    }
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -38,11 +46,9 @@ public class YarnWorld extends World
     {
         dog = new Dog();
         addObject(dog,108,228);
-        Bomb bomb = new Bomb();
-        bomb.setDecorator(new PowerUpDecorator());
+        bomb = new Bomb(MagicState.States.UP);
         addObject(bomb,376,414);        
-        Ball ball = new Ball();
-        ball.setDecorator(new PowerUpDecorator());
+        ball = new Ball(MagicState.getRandomState());
         addObject(ball,367,138);
         Wall wall = new Wall();
         addObject(wall,367,444);
