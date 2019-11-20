@@ -8,7 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Ball extends Item
 {
-    IDecorator decorator = null;
+    public MagicState.States state;
+    public Ball(MagicState.States s) {
+        this.state = s;
+    }
     /**
      * Act - do whatever the Ball wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -17,7 +20,10 @@ public class Ball extends Item
     {
         // Add your action code here.
         touched();
-    }    
+    }
+    public MagicState.States getState() {
+        return state;
+    }
     protected void addedToWorld(World world)
     {
         while (isTouching(Bomb.class) || isTouching(Wall.class) || isTouching(WallVertical.class) || isTouching(Counter.class))
@@ -27,15 +33,9 @@ public class Ball extends Item
             setLocation(x, y);
         }
     }
-    public void setDecorator(IDecorator d) {
-        this.decorator = d;
-    }
     public void touched() {
-        if (getOneObjectAtOffset(0, 0, Dog.class) != null && decorator != null) {
+        if (isTouching(Dog.class)) {
             super.setScoreSpeed(10, 0);
-            YarnWorld yw = (YarnWorld) getWorld();
-            Dog yarn = yw.getDog();
-            decorator.powerUp(MagicState.getRandomState(), yarn);
         }
     }
 }

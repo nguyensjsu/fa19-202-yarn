@@ -55,10 +55,10 @@ public class Dog extends Actor
     }   
     public void eat()
     {
-        Actor ball;
-        Actor bomb;
         YarnWorld yarnworld = (YarnWorld) getWorld();        
-        Counter counter = yarnworld.getCounter();        
+        Counter counter = yarnworld.getCounter();   
+        Ball ball = yarnworld.getBall();
+        Bomb bomb = yarnworld.getBomb();
         if ((isTouching(Wall.class) || isTouching(WallVertical.class) || isAtEdge()) && invincible==false) 
         {
             
@@ -68,24 +68,22 @@ public class Dog extends Actor
         else if ((isTouching(Wall.class) || isTouching(WallVertical.class)) && invincible==true) {
             //do nothing
         }
-        ball = getOneObjectAtOffset(0, 0, Ball.class);
-        if (ball != null)
+        if (getOneObjectAtOffset(0, 0, Ball.class) != null)
         {
-            yarnworld.removeObject(ball);
+            yarnworld.removeObject(getOneObjectAtOffset(0, 0, Ball.class));
             counter.bumpCount(5);
             timer=80;
-            Ball b = new Ball();
-            b.setDecorator(new PowerUpDecorator());
-            yarnworld.addObject(b, Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
+            magicM.setState(ball.getState());
+            magicM.doEffect(this);
+            yarnworld.addObject(new Ball(MagicState.getRandomState()), Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
         }
-        bomb = getOneObjectAtOffset(0, 0, Bomb.class);
-        if (bomb != null)
+        if (getOneObjectAtOffset(0, 0, Bomb.class) != null)
         {
-            yarnworld.removeObject(bomb);
+            yarnworld.removeObject(getOneObjectAtOffset(0, 0, Bomb.class));
             timer=80;
-            Bomb b = new Bomb();
-            b.setDecorator(new PowerUpDecorator());
-            yarnworld.addObject(b, Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
+            magicM.setState(bomb.getState());
+            magicM.doEffect(this);
+            yarnworld.addObject(new Bomb(MagicState.States.UP), Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
         }
     }
     public void timerCountdown() {
