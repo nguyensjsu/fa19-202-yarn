@@ -38,7 +38,7 @@ Score Board:
 
 #### State Pattern
 
-State Pattern is used to allow an Dog(Yarn) Object to alter its behavior when its magic state changes.The state transition is triggered by either touching a PowerUp (ball/bomb) with Magic State or timer (reset State). 
+State Pattern is used to allow an Dog(Yarn) Object to alter its behavior when its magic state changes. The state transition is triggered by either touching a PowerUp (ball/bomb) with Magic State or timer (reset State). Instead of conditional or case statements, State Patter helps us to keep code structure clear and flexible for adding any more Magic State.
 
 State Diagram
 ![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/StateDiagram.png)
@@ -47,4 +47,9 @@ Class Diagram
 
 #### Observer Pattern
 
+
 #### Composite Pattern
+An abstract class ```ScoreBoardComponent``` represents both primitive leaf classes (```Banner```, ```Title```, ```Background```, etc.) and their containers (```ScoreBoardComposite```). Clients can treat composite and leaf objects uniformly without writing a complex tag-and-case-statement style function. Thanks to composite pattern, now it is easy to add a new component to work automatically with existing client code.
+
+Class Diagram
+![alt_text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/ClassD-Composite.png)
