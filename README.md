@@ -38,6 +38,13 @@ Score Board:
 
 #### State Pattern
 
+State Pattern is used to allow an Dog(Yarn) Object to alter its behavior when its magic state changes.The state transition is triggered by either touching a PowerUp (ball/bomb) with Magic State or timer (reset State). 
+
+State Diagram
+![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/StateDiagram.png)
+Class Diagram
+![alt_text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/Class-StatePattern.png)
+
 #### Observer Pattern
 
 #### Composite Pattern
