@@ -33,11 +33,5 @@ public class DisplayComponent extends Actor implements ITouchObserver
     {
     }
     
-    /**
-     * update magic state
-     * to be overrided by Status Display
-     */
-    public void updateMagicStatus(MagicState.States s)
-    {
-    } 
+
 }

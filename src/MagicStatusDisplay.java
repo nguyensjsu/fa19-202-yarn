@@ -22,9 +22,8 @@ public class MagicStatusDisplay extends DisplayComponent
         // Add your action code here.
     }
 
-    @Override
     public void updateMagicStatus(MagicState.States s){
         this.currentStatus = s;
-        setImage(new GreenfootImage("Status: " + currentStatus.toString(), 20, Color.WHITE, Color.BLACK));
+        setImage(new GreenfootImage("Status: " + s.toString() , 20, Color.WHITE, Color.BLACK));
     }
 }

@@ -12,6 +12,14 @@ public class MagicStateManager
     private MagicState starState;
     private MagicState currentState;
 
+    public MagicStatusDisplay getMagicStatusDisplay() {
+        return magicStatusDisplay;
+    }
+
+    public void setMagicStatusDisplay(MagicStatusDisplay magicStatusDisplay) {
+        this.magicStatusDisplay = magicStatusDisplay;
+    }
+
     private MagicStatusDisplay magicStatusDisplay;
     
     /**
@@ -24,6 +32,7 @@ public class MagicStateManager
         this.downState = new SpeedDownState(this);
         this.starState = new InvincibleState(this);
         this.currentState = this.defaultState;
+        this.magicStatusDisplay = new MagicStatusDisplay();
     }
     
     /**
@@ -92,13 +101,7 @@ public class MagicStateManager
     {
         this.currentState.doEffect(yarn);
     }    
-    /**
-     * attach display observer 
-     */
-    public void attach(MagicStatusDisplay d_status)
-    {
-        this.magicStatusDisplay = d_status;
-    }
+
     
     /**
      * Notify Magic Status Display

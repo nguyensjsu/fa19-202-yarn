@@ -8,15 +8,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Dog extends Actor
 {
+    public int getSpeed() {
+        return speed + speedUpdate;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
     /**
      * Act - do whatever the Dog wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public int speed=4;
+    private int speed=4;
 
     public MagicStateManager getMagicM() {
         return magicM;
     }
+
 
     public void setMagicM(MagicStateManager magicM) {
         this.magicM = magicM;
@@ -25,8 +34,20 @@ public class Dog extends Actor
     MagicStateManager magicM;
     int timer = 0;                //set timer to 2 once touch a PowerUp
     public boolean invincible = false;  // like in Super Mario, if invincible, nothing happens when touch wall and bomb  
-    public int speedUpdate = 0;           //Temporarily speed effect applied on Dog
-    
+
+    public int getSpeedUpdate() {
+        return speedUpdate;
+    }
+
+    public void setSpeedUpdate(int speedUpdate) {
+        this.speedUpdate = speedUpdate;
+    }
+
+    private int speedUpdate = 0;           //Temporarily speed effect applied on Dog
+
+    public void addSpeedUpdate(){
+        this.speedUpdate++;
+    }
     public void act() 
     {
         moveAndTurn();
@@ -66,11 +87,11 @@ public class Dog extends Actor
         Actor ball;
         Actor bomb;
         YarnWorld yarnworld = (YarnWorld) getWorld();        
-        Counter counter = yarnworld.getCounter();        
+        ScoreDisplay scoreDisplay = yarnworld.getScoreDisplay();
         if ((isTouching(Wall.class) || isTouching(WallVertical.class) || isAtEdge()) && invincible==false) 
         {
             
-            GameOver gameover = new GameOver(counter.getTotalCount());
+            GameOver gameover = new GameOver(scoreDisplay.getScore());
             Greenfoot.setWorld(gameover);
         }
         else if ((isTouching(Wall.class) || isTouching(WallVertical.class)) && invincible==true) {
@@ -80,7 +101,7 @@ public class Dog extends Actor
         if (ball != null)
         {
             yarnworld.removeObject(ball);
-            counter.bumpCount(5);
+            //scoreDisplay.bumpScore(5);
             timer=80;
             Ball b = new Ball();
             b.setDecorator(new PowerUpDecorator());

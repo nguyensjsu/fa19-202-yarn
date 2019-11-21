@@ -2,7 +2,7 @@
  * Write a description of class PowerUpDecorator here.
  * 
  * @author (your name) 
- * @version (a version number or a date)
+ * @version (a version number or a date
  */
 public class PowerUpDecorator extends Item implements IDecorator  
 {
