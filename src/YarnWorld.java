@@ -22,7 +22,11 @@ public class YarnWorld extends World
      */
     public YarnWorld()
     {    
-        super(560, 560, 1);
+        super(819, 576, 1);
+        // set up background image
+        GreenfootImage background = new GreenfootImage("sand.jpg");
+        background.scale(getWidth(), getHeight());
+        setBackground(background);
         theCounter=new Counter();
         prepare();
         ball.attachObserver(scoreDisplay);
@@ -63,12 +67,12 @@ public class YarnWorld extends World
         
         addObject(ball,367,138);
         Wall wall = new Wall();
-        addObject(wall,367,444);
+        addObject(wall,500,444);
         dog.setLocation(130,202);
         WallVertical wallVertical = new WallVertical();
         addObject(wallVertical,130,202);
         dog.setLocation(131,188);
-        wall.setLocation(345,444);
+        wall.setLocation(500,444);
         bomb.setLocation(237,306);
         dog.setLocation(76,444);
         dog.setLocation(81,389);
