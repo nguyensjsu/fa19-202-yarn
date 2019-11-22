@@ -8,17 +8,49 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Dog extends Actor
 {
+    public int getSpeed() {
+        return speed + speedUpdate;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
     /**
      * Act - do whatever the Dog wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public int speed=4;
-    MagicStateManager magicM = new MagicStateManager();
+    private int speed=4;
+
+    public MagicStateManager getMagicM() {
+        return magicM;
+    }
+
+
+    public void setMagicM(MagicStateManager magicM) {
+        this.magicM = magicM;
+    }
+
+    MagicStateManager magicM;
     int timer = 0;                //set timer to 2 once touch a PowerUp
     public boolean invincible = false;  // like in Super Mario, if invincible, nothing happens when touch wall and bomb  
-    public int speedUpdate = 0;           //Temporarily speed effect applied on Dog
-    
-    private DisplayComponent display;  //observer  
+
+    private DisplayComponent display;  //observer
+
+    public int getSpeedUpdate() {
+        return speedUpdate;
+    }
+
+    public void setSpeedUpdate(int speedUpdate) {
+        this.speedUpdate = speedUpdate;
+    }
+
+    private int speedUpdate = 0;           //Temporarily speed effect applied on Dog
+
+    public void addSpeedUpdate(){
+        this.speedUpdate++;
+    }
+
     public void act() 
     {
         moveAndTurn();
@@ -52,17 +84,18 @@ public class Dog extends Actor
             setRotation(90);
             
         }
-    }   
+    }
     public void eat()
     {
-        YarnWorld yarnworld = (YarnWorld) getWorld();        
+        YarnWorld yarnworld = (YarnWorld) getWorld();
         Counter counter = yarnworld.getCounter();   
         Ball ball = yarnworld.getBall();
         Bomb bomb = yarnworld.getBomb();
+        ScoreDisplay scoreDisplay = yarnworld.getScoreDisplay();
         if ((isTouching(Wall.class) || isTouching(WallVertical.class) || isAtEdge()) && invincible==false) 
         {
             
-            GameOver gameover = new GameOver(counter.getTotalCount());
+            GameOver gameover = new GameOver(scoreDisplay.getScore());
             Greenfoot.setWorld(gameover);
         }
         else if ((isTouching(Wall.class) || isTouching(WallVertical.class)) && invincible==true) {
@@ -72,6 +105,7 @@ public class Dog extends Actor
         {
             yarnworld.removeObject(getOneObjectAtOffset(0, 0, Ball.class));
             counter.bumpCount(5);
+            yarnworld.removeObject(ball);
             timer=80;
             magicM.setState(ball.getState());
             magicM.doEffect(this);

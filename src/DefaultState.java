@@ -20,7 +20,7 @@ public class DefaultState extends MagicState
      */
     public void doEffect(Dog yarn)
     {
-        yarn.speedUpdate= 0;
+        yarn.setSpeedUpdate(0);
         yarn.invincible= false;
         
     }

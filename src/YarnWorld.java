@@ -9,10 +9,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class YarnWorld extends World
 {
-    private Counter theCounter;
+    private ScoreDisplay scoreDisplay;
     private Dog dog;
     private Ball ball;
     private Bomb bomb;
+    private MagicStateManager ms_manager;
+    private MagicStatusDisplay magicStatusDisplay;
+    private SpeedDisplay speedDisplay;
+
     /**
      * Constructor for objects of class CrabWorld.
      * 
@@ -21,13 +25,12 @@ public class YarnWorld extends World
     {    
         super(560, 560, 1); 
         prepare();
-        theCounter=new Counter();
-        addObject(theCounter, 10, getHeight()-10);
+
     }
     
-    public Counter getCounter()
+    public ScoreDisplay getScoreDisplay()
     {
-        return theCounter;
+        return scoreDisplay;
     }
     public Dog getDog() {
         return dog;
@@ -44,11 +47,26 @@ public class YarnWorld extends World
      */
     private void prepare()
     {
+
         dog = new Dog();
+        this.ms_manager = new MagicStateManager();
+        this.magicStatusDisplay = this.ms_manager.getMagicStatusDisplay();
+        this.dog.setMagicM(this.ms_manager);
+        addObject(this.magicStatusDisplay, 120, getHeight() - 10);
+        this.scoreDisplay = new ScoreDisplay();
+        this.speedDisplay = new SpeedDisplay();
+
         addObject(dog,108,228);
-        bomb = new Bomb(MagicState.States.UP);
+
+        Bomb bomb = new Bomb();
+        bomb.setDecorator(new PowerUpDecorator());
+        bomb.attachObserver(this.scoreDisplay);
+        bomb.attachObserver(this.speedDisplay);
         addObject(bomb,376,414);        
-        ball = new Ball(MagicState.getRandomState());
+        Ball ball = new Ball();
+        ball.setDecorator(new PowerUpDecorator());
+        ball.attachObserver(this.scoreDisplay);
+        ball.attachObserver(this.speedDisplay);
         addObject(ball,367,138);
         Wall wall = new Wall();
         addObject(wall,367,444);
@@ -60,5 +78,9 @@ public class YarnWorld extends World
         bomb.setLocation(237,306);
         dog.setLocation(76,444);
         dog.setLocation(81,389);
+
+        addObject(speedDisplay, 210, getHeight()-10);
+        addObject(scoreDisplay, 30, getHeight()-10);
+
     }
 }
