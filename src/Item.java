@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class Item extends Actor implements ITouchSubject
 {
-    ArrayList<ITouchObserver> observers = new ArrayList<>();
+    static ArrayList<ITouchObserver> observers = new ArrayList<>();
     public int scoreUpdate;
     public int speedUpdate;
     /**
@@ -31,6 +31,7 @@ public class Item extends Actor implements ITouchSubject
         notifyObservers(scoreUpdate, speedUpdate);
     }
     public void attachObserver(ITouchObserver observer) {
+        System.out.println("add Observer");
         observers.add(observer);
     }
     public void removeObserver(ITouchObserver observer) {
@@ -41,4 +42,11 @@ public class Item extends Actor implements ITouchSubject
             obj.updateScoreSpeed(score,speed);
         }
     }
+    public void touched()
+    {
+    }
+    public String getType() {
+        return "";
+    }
+        
 }

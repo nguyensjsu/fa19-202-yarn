@@ -31,7 +31,7 @@ public class ScoreDisplay extends DisplayComponent implements ITouchObserver
     }
 
     public void updateScoreSpeed(int update_score, int update_speed){
-        score = update_score;
+        score += update_score;
         setImage(new GreenfootImage("Score: " + score, 20, Color.WHITE, Color.BLACK));
     }
 }

@@ -22,7 +22,7 @@ public class MagicState implements IMagicState
     /**
      * get a random Magic State
      */
-    public static States getRandomState() {
+    public static States getRandomState2() {
        States random = (new Random().nextInt()<0) ? States.DOWN : States.STAR;
        return random;
     }  
@@ -30,7 +30,7 @@ public class MagicState implements IMagicState
     /**
     * get a random Magic State out of four state
     */
-    public static States getRandomState4() {
+    public static States getRandomState() {
         int pick = new Random().nextInt(States.values().length);
         return States.values()[pick];
     }

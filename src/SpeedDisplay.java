@@ -23,7 +23,7 @@ public class SpeedDisplay extends DisplayComponent implements ITouchObserver
     }    
     
     public void updateScoreSpeed(int update_score, int update_speed){
-        speed = update_speed;
+        speed += update_speed;
         setImage(new GreenfootImage("Speed: " + speed, 20, Color.WHITE, Color.BLACK));
     }
     

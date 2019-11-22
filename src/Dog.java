@@ -34,7 +34,7 @@ public class Dog extends Actor
     private MagicStateManager magicM;
     int timer = 0;                //set timer to 2 once touch a PowerUp
     public boolean invincible = false;  // like in Super Mario, if invincible, nothing happens when touch wall and bomb  
-
+   
     //private DisplayComponent display;  //stateManager will notify display
 
     public int getSpeedUpdate() {
@@ -57,6 +57,8 @@ public class Dog extends Actor
         eat();
         timerCountdown();
     }
+    
+    
     public void moveAndTurn()
     {
         move(speed+speedUpdate);
@@ -89,8 +91,8 @@ public class Dog extends Actor
     {
         YarnWorld yarnworld = (YarnWorld) getWorld();
         //Counter counter = yarnworld.getCounter();   
-        Ball ball = yarnworld.getBall();
-        Bomb bomb = yarnworld.getBomb();
+        //Ball ball = yarnworld.getBall();
+        //Bomb bomb = yarnworld.getBomb();
         ScoreDisplay scoreDisplay = yarnworld.getScoreDisplay();
         if ((isTouching(Wall.class) || isTouching(WallVertical.class) || isAtEdge()) && invincible==false) 
         {
@@ -101,26 +103,30 @@ public class Dog extends Actor
         else if ((isTouching(Wall.class) || isTouching(WallVertical.class)) && invincible==true) {
             //do nothing
         }
-        if (getOneObjectAtOffset(0, 0, Ball.class) != null)
-        {
+        else if (getOneObjectAtOffset(0, 0, PowerUp.class) != null) {
             
-            yarnworld.removeObject(getOneObjectAtOffset(0, 0, Ball.class));
+        }    
+        //if (getOneObjectAtOffset(0, 0, Ball.class) != null)
+        //{
+        //    
+        //    yarnworld.removeObject(getOneObjectAtOffset(0, 0, Ball.class));
             //counter.bumpCount(5);
-            yarnworld.removeObject(ball);
-            timer=80;
-            magicM.setState(ball.getState());
-            magicM.doEffect(this);
-            yarnworld.addObject(new Ball(MagicState.getRandomState()), Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
-        }
-        if (getOneObjectAtOffset(0, 0, Bomb.class) != null)
-        {
-            yarnworld.removeObject(getOneObjectAtOffset(0, 0, Bomb.class));
-            timer=80;
-            magicM.setState(bomb.getState());
-            magicM.doEffect(this);
-            yarnworld.addObject(new Bomb(MagicState.States.UP), Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
-        }
+        //    yarnworld.removeObject(ball);
+        //    timer=80;
+        //    magicM.setState(ball.getState());
+        //    magicM.doEffect(this);
+        //    yarnworld.addObject(new Ball(MagicState.getRandomState()), Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
+        //}
+        //if (getOneObjectAtOffset(0, 0, Bomb.class) != null)
+        //{
+        //    yarnworld.removeObject(getOneObjectAtOffset(0, 0, Bomb.class));
+        //    timer=80;
+        //    magicM.setState(bomb.getState());
+         //   magicM.doEffect(this);
+        //    yarnworld.addObject(new Bomb(MagicState.States.UP), Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
+        //}
     }
+    
     public void timerCountdown() {
         if (timer > 0) {
             if (invincible == true) {
@@ -138,4 +144,40 @@ public class Dog extends Actor
             }
         }
     }
+    
+    public void updateBallEaten(MagicState.States s) {
+        YarnWorld yarnworld = (YarnWorld) getWorld();
+        
+        this.magicM.setState(s);
+        this.magicM.doEffect(this);
+        
+        this.timer=80;
+        Actor a = getOneIntersectingObject(PowerUp.class);
+        if (a == null) System.out.println("NO Ball Found");
+        removeTouching(PowerUp.class);
+        
+        PowerUp ball = new PowerUp(this, new Ball(), MagicState.getRandomState());
+        getWorld().addObject(ball, Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
+    }
+       
+    
+    public void updateBombEaten(MagicState.States s) {
+        YarnWorld yarnworld = (YarnWorld) getWorld();
+        this.magicM.setState(s);
+        
+        this.timer=80;
+        
+        Actor a = getOneIntersectingObject(PowerUp.class);
+        if (a == null) System.out.println("NO Bomb Found");
+        removeTouching(PowerUp.class);
+       
+        this.magicM.doEffect(this);
+        Bomb b = new Bomb();
+        PowerUp x = new PowerUp(this, b, MagicState.getRandomState());
+        //System.out.println("Here");
+    
+        getWorld().addObject(x, Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
+    }
+    
 }
+
