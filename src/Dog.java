@@ -31,11 +31,11 @@ public class Dog extends Actor
         this.magicM = magicM;
     }
 
-    MagicStateManager magicM;
+    private MagicStateManager magicM;
     int timer = 0;                //set timer to 2 once touch a PowerUp
     public boolean invincible = false;  // like in Super Mario, if invincible, nothing happens when touch wall and bomb  
 
-    private DisplayComponent display;  //observer
+    //private DisplayComponent display;  //stateManager will notify display
 
     public int getSpeedUpdate() {
         return speedUpdate;
@@ -88,7 +88,7 @@ public class Dog extends Actor
     public void eat()
     {
         YarnWorld yarnworld = (YarnWorld) getWorld();
-        Counter counter = yarnworld.getCounter();   
+        //Counter counter = yarnworld.getCounter();   
         Ball ball = yarnworld.getBall();
         Bomb bomb = yarnworld.getBomb();
         ScoreDisplay scoreDisplay = yarnworld.getScoreDisplay();
@@ -103,8 +103,9 @@ public class Dog extends Actor
         }
         if (getOneObjectAtOffset(0, 0, Ball.class) != null)
         {
+            
             yarnworld.removeObject(getOneObjectAtOffset(0, 0, Ball.class));
-            counter.bumpCount(5);
+            //counter.bumpCount(5);
             yarnworld.removeObject(ball);
             timer=80;
             magicM.setState(ball.getState());
@@ -137,21 +138,4 @@ public class Dog extends Actor
             }
         }
     }
-    
-    //Work as subject
-    /**
-     * attach display observer 
-     */
-    public void attach(DisplayComponent d_status)
-    {
-        this.display = d_status;
-    }
-    
-    /**
-     * Notify Magic Status Display
-     */
-    public void notifyDisplay()
-    {
-        this.display.updateMagicStatus(magicM.getCurrentState());
-    }  
 }

@@ -58,13 +58,13 @@ public class YarnWorld extends World
 
         addObject(dog,108,228);
 
-        Bomb bomb = new Bomb();
-        bomb.setDecorator(new PowerUpDecorator());
+        Bomb bomb = new Bomb(MagicState.getRandomState());
+        //bomb.setDecorator(new PowerUpDecorator());
         bomb.attachObserver(this.scoreDisplay);
         bomb.attachObserver(this.speedDisplay);
         addObject(bomb,376,414);        
-        Ball ball = new Ball();
-        ball.setDecorator(new PowerUpDecorator());
+        Ball ball = new Ball(MagicState.getRandomState());
+        //ball.setDecorator(new PowerUpDecorator());
         ball.attachObserver(this.scoreDisplay);
         ball.attachObserver(this.speedDisplay);
         addObject(ball,367,138);

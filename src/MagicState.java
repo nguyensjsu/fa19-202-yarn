@@ -27,6 +27,14 @@ public class MagicState implements IMagicState
        return random;
     }  
     
+    /**
+    * get a random Magic State out of four state
+    */
+    public static States getRandomState4() {
+        int pick = new Random().nextInt(States.values().length);
+        return States.values()[pick];
+    }
+
      /**
      * Constructor for objects of class MagicState
      */
