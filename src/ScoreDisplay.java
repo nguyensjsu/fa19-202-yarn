@@ -6,14 +6,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ScoreDisplay extends DisplayComponent implements ITouchObserver
+public class ScoreDisplay extends DisplayComponent
 {
-    
     private int score = 0;
     public ScoreDisplay()
     {
         score = 0;
-        setImage(new GreenfootImage("Score: " + score, 20, Color.WHITE, Color.BLACK));
+        Color trans = new Color(0,0,0,0);
+        setImage(new GreenfootImage("Score: " + score, 20, Color.BLACK, trans));
     }
 
     /**
@@ -22,7 +22,7 @@ public class ScoreDisplay extends DisplayComponent implements ITouchObserver
     public void bumpScore(int amount)
     {
         score += amount;
-        setImage(new GreenfootImage("Score: " + score, 20, Color.WHITE, Color.BLACK));
+        //setImage(new GreenfootImage("Score: " + score, 20, Color.WHITE, Color.BLACK));
     }
     public int getScore()
     {
@@ -32,6 +32,7 @@ public class ScoreDisplay extends DisplayComponent implements ITouchObserver
 
     public void updateScoreSpeed(int update_score, int update_speed){
         score = update_score;
-        setImage(new GreenfootImage("Score: " + score, 20, Color.WHITE, Color.BLACK));
-    }
+        Color trans = new Color(0,0,0,0);
+        setImage(new GreenfootImage("Score: " + score, 20, Color.BLACK, trans));
+    } 
 }

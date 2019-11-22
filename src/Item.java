@@ -28,7 +28,7 @@ public class Item extends Actor implements ITouchSubject
     public void setScoreSpeed(int score, int speed) {
         scoreUpdate = score;
         speedUpdate = speed;
-        notifyObservers(scoreUpdate, speedUpdate);
+        notifyObservers(score, speed);
     }
     public void attachObserver(ITouchObserver observer) {
         observers.add(observer);

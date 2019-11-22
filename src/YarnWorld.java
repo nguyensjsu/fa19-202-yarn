@@ -9,28 +9,30 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class YarnWorld extends World
 {
-    private ScoreDisplay scoreDisplay;
+    private Counter theCounter;
     private Dog dog;
     private Ball ball;
     private Bomb bomb;
-    private MagicStateManager ms_manager;
+    private ScoreDisplay scoreDisplay;
     private MagicStatusDisplay magicStatusDisplay;
     private SpeedDisplay speedDisplay;
-
     /**
      * Constructor for objects of class CrabWorld.
      * 
      */
     public YarnWorld()
     {    
-        super(560, 560, 1); 
+        super(560, 560, 1);
+        theCounter=new Counter();
         prepare();
-
+        ball.attachObserver(scoreDisplay);
+        
+        //addObject(theCounter, 10, getHeight()-10);
     }
     
-    public ScoreDisplay getScoreDisplay()
+    public Counter getCounter()
     {
-        return scoreDisplay;
+        return theCounter;
     }
     public Dog getDog() {
         return dog;
@@ -47,26 +49,18 @@ public class YarnWorld extends World
      */
     private void prepare()
     {
-
-        dog = new Dog();
-        this.ms_manager = new MagicStateManager();
-        this.magicStatusDisplay = this.ms_manager.getMagicStatusDisplay();
-        this.dog.setMagicM(this.ms_manager);
+        this.magicStatusDisplay = new MagicStatusDisplay();
+        scoreDisplay = new ScoreDisplay();
+        speedDisplay = new SpeedDisplay();
+        addObject(scoreDisplay, 30, getHeight()-10);
+        addObject(speedDisplay, 210, getHeight()-10);
         addObject(this.magicStatusDisplay, 120, getHeight() - 10);
-        this.scoreDisplay = new ScoreDisplay();
-        this.speedDisplay = new SpeedDisplay();
-
+        dog = new Dog(scoreDisplay, speedDisplay, magicStatusDisplay);
         addObject(dog,108,228);
-
-        Bomb bomb = new Bomb(MagicState.getRandomState());
-        //bomb.setDecorator(new PowerUpDecorator());
-        bomb.attachObserver(this.scoreDisplay);
-        bomb.attachObserver(this.speedDisplay);
+        bomb = new Bomb(MagicState.States.OFF, dog.speed+dog.speedUpdate, theCounter.getTotalCount());
         addObject(bomb,376,414);        
-        Ball ball = new Ball(MagicState.getRandomState());
-        //ball.setDecorator(new PowerUpDecorator());
-        ball.attachObserver(this.scoreDisplay);
-        ball.attachObserver(this.speedDisplay);
+        ball = new Ball(MagicState.States.OFF, dog.speed+dog.speedUpdate, theCounter.getTotalCount());
+        
         addObject(ball,367,138);
         Wall wall = new Wall();
         addObject(wall,367,444);
@@ -78,9 +72,7 @@ public class YarnWorld extends World
         bomb.setLocation(237,306);
         dog.setLocation(76,444);
         dog.setLocation(81,389);
-
-        addObject(speedDisplay, 210, getHeight()-10);
-        addObject(scoreDisplay, 30, getHeight()-10);
-
+        
+        
     }
 }

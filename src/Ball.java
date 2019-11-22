@@ -9,8 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Ball extends Item
 {
     public MagicState.States state;
-    public Ball(MagicState.States s) {
+    private int speed;
+    private int score;
+    public Ball(MagicState.States s, int yarnspeed, int yarnscore) {
         this.state = s;
+        speed = yarnspeed;
+        score = yarnscore;
     }
     /**
      * Act - do whatever the Ball wants to do. This method is called whenever
@@ -19,7 +23,7 @@ public class Ball extends Item
     public void act() 
     {
         // Add your action code here.
-        touched();
+        //touched();
     }
     public MagicState.States getState() {
         return state;
@@ -35,7 +39,11 @@ public class Ball extends Item
     }
     public void touched() {
         if (isTouching(Dog.class)) {
-            super.setScoreSpeed(10, 0);
+            super.setScoreSpeed(score, speed);
         }
+    }
+    public void eaten()
+    {
+        super.setScoreSpeed(score, speed);
     }
 }

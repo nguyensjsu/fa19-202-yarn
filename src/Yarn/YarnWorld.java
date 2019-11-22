@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class YarnWorld extends World
 {
-    private ScoreDisplay scoreDisplay;
+    private Counter theCounter;
     
     /**
      * Constructor for objects of class CrabWorld.
@@ -18,8 +18,8 @@ public class YarnWorld extends World
     {    
         super(560, 560, 1); 
         prepare();
-        scoreDisplay=new ScoreDisplay();
-        addObject(scoreDisplay, 10, getHeight()-10);
+        theCounter=new Counter();
+        addObject(theCounter, 10, getHeight()-10);
         
     }
     public Counter getCounter()

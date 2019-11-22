@@ -23,18 +23,10 @@ public class MagicState implements IMagicState
      * get a random Magic State
      */
     public static States getRandomState() {
-       States random = (new Random().nextInt()<0) ? States.DOWN : States.STAR;
+       States random = (new Random().nextInt()<0) ? States.DOWN : States.STAR ;
        return random;
     }  
     
-    /**
-    * get a random Magic State out of four state
-    */
-    public static States getRandomState4() {
-        int pick = new Random().nextInt(States.values().length);
-        return States.values()[pick];
-    }
-
      /**
      * Constructor for objects of class MagicState
      */

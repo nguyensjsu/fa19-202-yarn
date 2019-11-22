@@ -27,7 +27,7 @@ public class SpeedDownState extends MagicState
      */
     public void doEffect(Dog yarn)
     {
-        yarn.setSpeedUpdate(-1);
+        yarn.speedUpdate = -1;
     }
     
 
