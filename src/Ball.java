@@ -14,6 +14,9 @@ public class Ball extends Item
         setImage(bomb);
     }
     
+    /**
+    * @return object type
+    */
     public String getType()
     {
         return "Ball";
@@ -27,17 +30,8 @@ public class Ball extends Item
     {
         // Add your action code here.
     }
-
-    //protected void addedToWorld(World world)
-    //{
-    //    while (isTouching(Bomb.class) || isTouching(Wall.class) || isTouching(WallVertical.class) || isTouching(Counter.class))
-    //    {
-    //        int x = Greenfoot.getRandomNumber(world.getWidth());
-    //        int y = Greenfoot.getRandomNumber(world.getHeight());
-    //        setLocation(x, y);
-    //    }
-    //}
     
+    // Power up touch 
     public void touched() {
         super.setScoreSpeed(10, 0);
     }

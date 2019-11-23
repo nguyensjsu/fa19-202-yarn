@@ -19,24 +19,30 @@ public class Dog extends Actor
     public boolean invincible = false;  // like in Super Mario, if invincible, nothing happens when touch wall and bomb 
     private int speedUpdate = 0;           //Temporarily speed effect applied on Dog
     
-    /*** 
-        Dog speed getter stter
-    ***/
+    /**
+    * @return Dog speed
+    **/
     public int getSpeed() {
         return speed + speedUpdate;
     }
 
+    /**
+    * Set Dog speed
+    **/
     public void setSpeed(int speed) {
         this.speed = speed;
     }
 
-    /***
-        Dog speed update getter setter
-    ***/
+    /**
+    * @return Dog update speed
+    **/
     public int getSpeedUpdate() {
         return speedUpdate;
     }
 
+    /**
+    * Set Dog update Speed
+    **/
     public void setSpeedUpdate(int speedUpdate) {
         this.speedUpdate = speedUpdate;
     }
@@ -48,6 +54,9 @@ public class Dog extends Actor
         this.magicM = magicM;
     }
 
+    /**
+    * @return Magic state manager
+    **/
     public MagicStateManager getMagicM() {
         return magicM;
     }
@@ -94,6 +103,9 @@ public class Dog extends Actor
         }
     }
 
+    /**
+    * dog eat 
+    **/
     public void eat()
     {
         YarnWorld yarnworld = (YarnWorld) getWorld();
@@ -113,6 +125,7 @@ public class Dog extends Actor
         }
     }
     
+    // time count for timer and temporary state for dog
     public void timerCountdown() {
         if (timer > 0) {
             if (invincible == true) {
@@ -131,6 +144,7 @@ public class Dog extends Actor
         }
     }
     
+    // Update new ball postion and dog state
     public void updateBallEaten(MagicState.States s) {
         Greenfoot.playSound("ball.mp3");
         YarnWorld yarnworld = (YarnWorld) getWorld();
@@ -149,7 +163,7 @@ public class Dog extends Actor
         getWorld().addObject(ball, pos[0], pos[1]); 
     }
        
-    
+    // Update new bomb postion and dog state
     public void updateBombEaten(MagicState.States s) {
         //Greenfoot.playSound("bomb.mp3");
         YarnWorld yarnworld = (YarnWorld) getWorld();
