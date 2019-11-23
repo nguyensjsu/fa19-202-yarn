@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.Actor;
 
 /**
  * Write a description of class DisplayComponent here.
@@ -32,11 +33,5 @@ public class DisplayComponent extends Actor implements ITouchObserver
     {
     }
     
-    /**
-     * update magic state
-     * to be overrided by Status Display
-     */
-    public void updateMagicStatus(MagicState.States s)
-    {
-    } 
+
 }

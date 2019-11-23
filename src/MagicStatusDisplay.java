@@ -11,8 +11,7 @@ public class MagicStatusDisplay extends DisplayComponent
     private MagicState.States currentStatus;
     public MagicStatusDisplay(){
         currentStatus = MagicState.States.OFF;
-        Color trans = new Color(0,0,0,0);
-        setImage(new GreenfootImage("Status: " + currentStatus, 20, Color.BLACK, trans));
+        setImage(new GreenfootImage("Status: " + currentStatus, 20, Color.WHITE, Color.BLACK));
     }
     /**
      * Act - do whatever the MagicStatusDisplay wants to do. This method is called whenever
@@ -25,7 +24,6 @@ public class MagicStatusDisplay extends DisplayComponent
 
     public void updateMagicStatus(MagicState.States s){
         this.currentStatus = s;
-        Color trans = new Color(0,0,0,0);
-        setImage(new GreenfootImage("Status: " + s.toString() , 20, Color.BLACK, trans));
-    }  
+        setImage(new GreenfootImage("Status: " + s.toString() , 20, Color.WHITE, Color.BLACK));
+    }
 }

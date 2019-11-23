@@ -8,14 +8,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Bomb extends Item
 {
-    public MagicState.States state;
-    private int speed;
-    private int score;
-    public Bomb(MagicState.States s, int yarnspeed, int yarnscore) {
-        this.state = s;
-        speed = yarnspeed;
-        score = yarnscore;
+    public Bomb() {
+        GreenfootImage bomb = new GreenfootImage("bomb.png");
+        bomb.scale(56, 56);
+        setImage(bomb);
     }
+    
+    public String getType()
+    {
+        return "Bomb";
+    }  
+    
     /**
      * Act - do whatever the Bomb wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -23,27 +26,20 @@ public class Bomb extends Item
     public void act() 
     {
         // Add your action code here.
-        //touched();
+        
     }
-    public MagicState.States getState() {
-        return state;
-    }
-    protected void addedToWorld(World world)
-    {
-        while (isTouching(Ball.class) || isTouching(Wall.class) || isTouching(WallVertical.class) || isTouching(Counter.class))
-        {
-            int x = Greenfoot.getRandomNumber(world.getWidth());
-            int y = Greenfoot.getRandomNumber(world.getHeight());
-            setLocation(x, y);
-        }
-    }
+
+    //protected void addedToWorld(World world)
+    //{
+    //    while (isTouching(Ball.class) || isTouching(Wall.class) || isTouching(WallVertical.class) || isTouching(Counter.class))
+    //    {
+    //        int x = Greenfoot.getRandomNumber(world.getWidth());
+    //        int y = Greenfoot.getRandomNumber(world.getHeight());
+    //        setLocation(x, y);
+    //    }
+    //}
     public void touched() {
-        if (isTouching(Dog.class)) {
-            super.setScoreSpeed(score, speed);
-        }
-    }
-    public void eaten()
-    {
-        super.setScoreSpeed(score, speed);
+       super.setScoreSpeed(-10, 2);
+    
     }
 }
