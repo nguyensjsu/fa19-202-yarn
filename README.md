@@ -67,7 +67,7 @@ An abstract class ```ScoreBoardComponent``` represents both primitive leaf class
 
 ![alt_text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/ClassD-Composite.png)
 
-### Agile 
+### Agile (Agile meeting video link: https://youtu.be/dK3pBHE5QsE)
 
 ![alt_text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/BurndownSheet.png)
 ![alt_text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/BurndownChart.png)
