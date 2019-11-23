@@ -35,19 +35,19 @@ Score Board:
 ### Key Design Features:
 
 #### 1. Decorator Pattern
-Decorator Pattern allows us to add reponsibilities to Ball and Bomb objects dynamically, a random Magic State effect is added to them. Although now our current demo is pretty simple, this pattern could help us gain more flexiblity when we try to extend/add more complex reponsibilites to Ball and Bomb. And those responsibilities are also easy to remove.In our case, due to constraint of Greenfoot, we also use a Observer pattern to associated with Decorator pattern to handle touching event.
+Decorator Pattern allows us to add reponsibilities to ```Ball``` and ```Bomb``` objects dynamically, a random ```MagicState``` effect is added to them. Although now our current demo is pretty simple, this pattern could help us gain more flexiblity when we try to extend/add more complex reponsibilites to ```Ball``` and ```Bomb```. And those responsibilities are also easy to remove. In our case, due to constraint of Greenfoot, we also use a Observer pattern to associated with Decorator pattern to handle touching event.
 ![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/DecoratorPattern.png)
 
 #### 2. State Pattern
 
-State Pattern is used to allow an Dog(Yarn) Object to alter its behavior when its magic state changes. The state transition is triggered by either touching a PowerUp (ball/bomb) with Magic State or timer (reset State). Instead of conditional or case statements, State Patter helps us to keep code structure clear and flexible for adding any more Magic State.
+State Pattern is used to allow an ```Dog``` Object to alter its behavior when its magic state changes. The state transition is triggered by either touching a ```PowerUp``` (ball/bomb) with ```Magic State``` or timer (reset State). Instead of conditional or case statements, State Patter helps us to keep code structure clear and flexible for adding any more Magic State.
 
 ![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/StateDiagram.png)
 
 ![alt_text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/Class-StatePattern.png)
 
 #### 3. Observer Pattern
-Observer Pattern let us avoid tight coupling between Item(```Ball```, ```Bomb```,```Wall``` and even ```PowerUp```) and all kinds of DisplayComponents. We could vary subject and observers independently or add more observers anytime without modified current observers. And it also helps increasing our code reusibility.
+Observer Pattern let us avoid tight coupling between Item(```Ball```, ```Bomb```,```Wall``` and even ```PowerUp```) and all kinds of ```DisplayComponents```. We could vary subject and observers independently or add more observers anytime without modified current observers. And it also helps increasing our code reusibility.
 ![alt_text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/ObserverPattern.png)
 
 #### 4. Composite Pattern
