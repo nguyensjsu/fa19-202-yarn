@@ -16,18 +16,24 @@ Once upon a time, there is a naughty dog named Yarn. He loves finding balls in h
 + Magic States (```SPEEDUP```, ```SPEEDDOWN```, ```INVINCIBLE```) are randomly attached to ball and bomb, which cause temporary state change on Yarn **for 2 seconds**. 
 + There are walls/obstacle in the room. When Yarn hits a wall or the border of the room, game ends.
 
-Start Page (**Add Screenshot here**):
+**Start Page**
+![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/EntryWorld.png)
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+**Game Page**:
 
-Game Page:
+Yarn gains a STAR State
+![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/STAR.png)
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+Yarn gains SPEEDDOWN State
+![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/DOWN.jpeg)
 
-Score Board:
+After 2s, State disapper
+![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/OFF.png)
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+**Score Board**:
 
+![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/Gameover.png)
+![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/EndWorld.png)
 
 ### Design Overview:
 ![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/DesignDraft-v2.0.png)
