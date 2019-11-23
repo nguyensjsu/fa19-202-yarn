@@ -33,9 +33,4 @@ public class Counter extends Actor
         return totalCount;
         
     }
-    /*public void score()
-    {
-      setImage(new GreenfootImage("" + totalCount, 70, Color.WHITE, Color.BLACK));
-      totalCount=0;
-    }*/
 }
