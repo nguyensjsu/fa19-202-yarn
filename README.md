@@ -27,7 +27,7 @@ Yarn gains a STAR State
 Yarn gains SPEEDDOWN State
 ![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/DOWN.jpeg)
 
-After 2s, State disapper
+After 2s, State disappear
 ![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/OFF.png)
 
 **Score Board**:
@@ -37,12 +37,12 @@ After 2s, State disapper
 
 ### Design Overview:
 ![alt text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/DesignDraft-v2.0.png)
-All main component and basic interactions between components are shown above, four design pattern will be implemented (Decorator, State, Observer, Composite). The whole project is splited into 5 task groups, each team member focus on one task group.
+All main component and basic interactions between components are shown above. Four design pattern are implemented (Decorator, State, Observer, Composite). The whole project is split into 5 task groups, each team member focusing on one task group.
 * Task Group 0 (Yu):  MagicState and MagicState Manager
 * Task Group 1 (Steven): Ball and Bomb (including decorator pattern and Touch Subject implementation)
 * Task Group 2 (Yueqiao): Score Board (Composite Pattern) and Game entry/end World
 * Task Group 3 (Danqing): Display Components (Status, Speed, Score) and Touch Observer 
-* Task Group 4 (Mohit): Game World (Room) and Yarn, integration of all components of game
+* Task Group 4 (Mohit): Game World (Room) and Yarn, integration of all the components of the game
 
 ### Key Design Features:
 
