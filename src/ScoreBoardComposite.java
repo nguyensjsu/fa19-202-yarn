@@ -4,7 +4,7 @@ import java.util.*;
  * @author Yueqiao
  * @version 1.0 Nov 14
  */
-
+// ScoreBoard Composite class
 public class ScoreBoardComposite extends ScoreBoardComponent {
 
 	private ArrayList<ScoreBoardComponent> components = new ArrayList<>();

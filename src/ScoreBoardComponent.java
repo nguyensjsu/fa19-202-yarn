@@ -4,6 +4,7 @@ import greenfoot.*;
  * @version 1.0 Nov 14
  */
 
+// Score Board  component interface class
 public abstract class ScoreBoardComponent extends Actor {
     public abstract void printDescription();
     public abstract void addChild(ScoreBoardComponent c);

@@ -4,6 +4,7 @@ import greenfoot.*;
  * @version 1.0 Nov 14
  */
 
+// ScoreBoard Background of ScoreBoard
 public class ScoreBoardBackground extends ScoreBoardComponent {
 
     private GreenfootImage image;

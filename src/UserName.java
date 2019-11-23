@@ -3,7 +3,7 @@ import greenfoot.*;
  * @author Yueqiao
  * @version 1.0 Nov 14
  */
-
+// User Name of SCore Board Component
 public class UserName extends ScoreBoardComponent {
 
     private String name;
@@ -12,6 +12,7 @@ public class UserName extends ScoreBoardComponent {
         this.name = name;
     }
 
+    // Display user name 
 	public void printDescription() {
         
         String content = "Hi " + name;
