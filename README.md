@@ -66,3 +66,9 @@ Observer Pattern let us avoid tight coupling between Item(```Ball```, ```Bomb```
 An abstract class ```ScoreBoardComponent``` represents both primitive leaf classes (```Banner```, ```Title```, ```Background```, etc.) and their containers (```ScoreBoardComposite```). Clients can treat composite and leaf objects uniformly without writing a complex tag-and-case-statement style function. Thanks to composite pattern, now it is easy to add a new component to work automatically with existing client code.
 
 ![alt_text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/ClassD-Composite.png)
+
+### Agile 
+
+![alt_text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/BurndownSheet.png)
+![alt_text](https://github.com/nguyensjsu/fa19-202-yarn/blob/master/doc/imgs/BurndownChart.png)
+
