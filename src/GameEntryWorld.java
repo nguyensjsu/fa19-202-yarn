@@ -23,12 +23,14 @@ public class GameEntryWorld extends World
 		yw = new YarnWorld();
 	}
 
+	// Added stargame button
 	public void act() {
 		if (Greenfoot.mouseClicked(sb)) {
 			Greenfoot.setWorld(yw);
 		}
 	}
 
+	// added button for entering game world
 	private class StartButton extends Actor {
 		private GreenfootImage buttonImage;
 

@@ -4,6 +4,7 @@ import greenfoot.*;
  * @version 1.0 Nov 14
  */
 
+// Score class of Score Board
 public class Score extends ScoreBoardComponent {
 
     private int score;
@@ -12,6 +13,7 @@ public class Score extends ScoreBoardComponent {
         this.score = score;
     }
 
+    // print component content
     public void printDescription() {
         //getWorld().showText("test", 100, 100);
         //System.out.println(getWorld());

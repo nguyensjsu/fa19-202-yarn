@@ -3,7 +3,7 @@ import greenfoot.*;
  * @author Yueqiao
  * @version 1.0 Nov 14
  */
-
+// SCoreBoard button class -- component of ScoreBoard
 public class ScoreBoardButton extends ScoreBoardComponent {
 
     private int x;
