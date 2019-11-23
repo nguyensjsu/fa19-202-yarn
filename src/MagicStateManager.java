@@ -12,7 +12,17 @@ public class MagicStateManager
     private MagicState starState;
     private MagicState currentState;
     //private DisplayComponent display;
-    public MagicStatusDisplay magicstatusdisplay;
+
+    public MagicStatusDisplay getMagicStatusDisplay() {
+        return magicStatusDisplay;
+    }
+
+    public void setMagicStatusDisplay(MagicStatusDisplay magicStatusDisplay) {
+        this.magicStatusDisplay = magicStatusDisplay;
+    }
+
+    private MagicStatusDisplay magicStatusDisplay;
+    
     /**
      * Constructor for objects of class StateManager
      */
@@ -23,10 +33,9 @@ public class MagicStateManager
         this.downState = new SpeedDownState(this);
         this.starState = new InvincibleState(this);
         this.currentState = this.defaultState;
+        this.magicStatusDisplay = new MagicStatusDisplay();
     }
-    public void setMagicStatusDisplay(MagicStatusDisplay magicStatusDisplay) {
-        magicstatusdisplay = magicStatusDisplay;
-    }
+    
     /**
      * reset to default state
      */
@@ -74,6 +83,7 @@ public class MagicStateManager
             case STAR: this.currentState = starState; break;
             case OFF: this.currentState = defaultState; break;
         }
+
         this.notifyDisplay();
     } 
     
@@ -92,9 +102,17 @@ public class MagicStateManager
     {
         this.currentState.doEffect(yarn);
     }    
-   public void notifyDisplay()
+   
+
+    
+    /**
+     * Notify Magic Status Display
+     */
+    public void notifyDisplay()
     {
-        magicstatusdisplay.updateMagicStatus(this.currentState.getState());
+        this.magicStatusDisplay.updateMagicStatus(this.currentState.getState());
 
     }
+
+
 }

@@ -15,5 +15,12 @@ public class Wall extends Actor
     public void act() 
     {
         // Add your action code here.
-    }    
+    }   
+
+    public Wall() {
+    	
+		GreenfootImage bone = new GreenfootImage("wall.jpg");
+		bone.scale(150, 69);
+		setImage(bone);
+	} 
 }

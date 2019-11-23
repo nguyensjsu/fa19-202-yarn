@@ -8,36 +8,66 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Dog extends Actor
 {
-    private ScoreDisplay scoredisplay;
-    private SpeedDisplay speeddisplay;
-    public MagicStatusDisplay magicstatusdisplay;
-    public Dog(ScoreDisplay scd, SpeedDisplay spd, MagicStatusDisplay msd)
-    {
-        scoredisplay=scd;
-        speeddisplay=spd;
-        magicstatusdisplay=msd;
-    }
+    
     /**
      * Act - do whatever the Dog wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public int speed=4;
-    MagicStateManager magicM = new MagicStateManager();
-    
+    private int speed=4;
+    private MagicStateManager magicM;
     int timer = 0;                //set timer to 2 once touch a PowerUp
-    public boolean invincible = false;  // like in Super Mario, if invincible, nothing happens when touch wall and bomb  
-    public int speedUpdate = 0;           //Temporarily speed effect applied on Dog
-    private DisplayComponent display;  //observer  
+    public boolean invincible = false;  // like in Super Mario, if invincible, nothing happens when touch wall and bomb 
+    private int speedUpdate = 0;           //Temporarily speed effect applied on Dog
+    
+    /*** 
+        Dog speed getter stter
+    ***/
+    public int getSpeed() {
+        return speed + speedUpdate;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    /***
+        Dog speed update getter setter
+    ***/
+    public int getSpeedUpdate() {
+        return speedUpdate;
+    }
+
+    public void setSpeedUpdate(int speedUpdate) {
+        this.speedUpdate = speedUpdate;
+    }
+
+    /**
+        Magic State Manager getter setter
+    **/
+    public void setMagicM(MagicStateManager magicM) {
+        this.magicM = magicM;
+    }
+
+    public MagicStateManager getMagicM() {
+        return magicM;
+    }
+
+
+    public void addSpeedUpdate(){
+        this.speedUpdate++;
+    }
+
     public void act() 
     {
-        magicM.setMagicStatusDisplay(magicstatusdisplay);
         moveAndTurn();
         eat();
         timerCountdown();
     }
+    
+    
     public void moveAndTurn()
     {
-        move( speed + speedUpdate);
+        move(speed+speedUpdate);
         if(Greenfoot.isKeyDown("left"))
         {
             
@@ -62,52 +92,27 @@ public class Dog extends Actor
             setRotation(90);
             
         }
-    }   
+    }
+
     public void eat()
     {
-        YarnWorld yarnworld = (YarnWorld) getWorld();        
-        Counter counter = yarnworld.getCounter();   
-        Ball ball = yarnworld.getBall();
-        Bomb bomb = yarnworld.getBomb();
+        YarnWorld yarnworld = (YarnWorld) getWorld();
+        //Counter counter = yarnworld.getCounter();   
+        //Ball ball = yarnworld.getBall();
+        //Bomb bomb = yarnworld.getBomb();
+        ScoreDisplay scoreDisplay = yarnworld.getScoreDisplay();
         if ((isTouching(Wall.class) || isTouching(WallVertical.class) || isAtEdge()) && invincible==false) 
         {
             
-            GameOver gameover = new GameOver(counter.getTotalCount());
+            Greenfoot.playSound("bark.mp3");
+            GameOver gameover = new GameOver(scoreDisplay.getScore());
             Greenfoot.setWorld(gameover);
         }
         else if ((isTouching(Wall.class) || isTouching(WallVertical.class)) && invincible==true) {
             //do nothing
         }
-        if (getOneObjectAtOffset(0, 0, Ball.class) != null)
-        {
-            counter.bumpCount(10);
-            yarnworld.removeObject(getOneObjectAtOffset(0, 0, Ball.class));            
-            timer=80;
-            magicM.setState(MagicState.getRandomState());
-            magicM.doEffect(this);
-            Ball newBall = new Ball(magicM.getCurrentState(), speed+speedUpdate, counter.getTotalCount());
-            yarnworld.addObject(newBall, Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
-            newBall.attachObserver(scoredisplay);
-            newBall.attachObserver(magicstatusdisplay);
-            newBall.attachObserver(speeddisplay);
-            //magicstatusdisplay.updateMagicStatus(magicM.getCurrentState());
-            newBall.eaten();
-            
-        }
-        if (getOneObjectAtOffset(0, 0, Bomb.class) != null)
-        {
-            yarnworld.removeObject(getOneObjectAtOffset(0, 0, Bomb.class));
-            counter.bumpCount(-10);
-            speed++;
-            timer=80;
-            magicM.setState(MagicState.getRandomState());
-            magicM.doEffect(this);
-            Bomb newBomb = new Bomb(magicM.getCurrentState(), speed+speedUpdate, counter.getTotalCount());
-            yarnworld.addObject(newBomb, Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
-            newBomb.attachObserver(scoredisplay);
-            newBomb.eaten();
-        }
     }
+    
     public void timerCountdown() {
         if (timer > 0) {
             if (invincible == true) {
@@ -118,31 +123,79 @@ public class Dog extends Actor
                 getImage().setTransparency(255);
             }
             timer--;
-            
-        }
-        if (timer == 0) {
+            if (timer == 0) {
                 getImage().setTransparency(255);
                 magicM.setState(MagicState.States.OFF);
                 magicM.doEffect(this);
-                //magicstatusdisplay.updateMagicStatus(magicM.getCurrentState());
-                speeddisplay.updateSpeed(speed+speedUpdate);
             }
+        }
     }
     
-    //Work as subject
-    /**
-     * attach display observer 
-     */
-    public void attach(DisplayComponent d_status)
-    {
-        this.display = d_status;
+    public void updateBallEaten(MagicState.States s) {
+        Greenfoot.playSound("ball.mp3");
+        YarnWorld yarnworld = (YarnWorld) getWorld();
+        
+        this.magicM.setState(s);
+        this.magicM.doEffect(this);
+        
+        this.timer=80;
+        Actor a = getOneIntersectingObject(PowerUp.class);
+        if (a == null) System.out.println("NO Ball Found");
+        removeTouching(PowerUp.class);
+        
+        PowerUp ball = new PowerUp(this, new Ball(), MagicState.getRandomState());
+        //getWorld().addObject(ball, Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
+        int[] pos = getPosition();
+        getWorld().addObject(ball, pos[0], pos[1]); 
+    }
+       
+    
+    public void updateBombEaten(MagicState.States s) {
+        //Greenfoot.playSound("bomb.mp3");
+        YarnWorld yarnworld = (YarnWorld) getWorld();
+        this.magicM.setState(s);
+        
+        this.timer=80;
+        
+        Actor a = getOneIntersectingObject(PowerUp.class);
+        if (a == null) System.out.println("NO Bomb Found");
+        removeTouching(PowerUp.class);
+       
+        this.magicM.doEffect(this);
+        Bomb b = new Bomb();
+        PowerUp x = new PowerUp(this, b, MagicState.getRandomState());
+        //System.out.println("Here");
+        int[] pos = getPosition();
+        getWorld().addObject(x, pos[0], pos[1]); 
+        //getWorld().addObject(x, Greenfoot.getRandomNumber(yarnworld.getWidth()), Greenfoot.getRandomNumber(yarnworld.getHeight()));
+    }
+
+    //check collision
+    private int[] getPosition() {
+        YarnWorld yarnworld = (YarnWorld) getWorld();
+        int x = Greenfoot.getRandomNumber(yarnworld.getWidth() - 100);
+        int y = Greenfoot.getRandomNumber(yarnworld.getHeight() - 100);
+
+        //int sItem = getObjectsAt(x, y, PowerUp.class).size();
+        int sw = yarnworld.getObjectsAt(x, y, Wall.class).size();
+        int swv = yarnworld.getObjectsAt(x, y, WallVertical.class).size();
+        int sDog = yarnworld.getObjectsAt(x, y, Dog.class).size();
+
+        boolean noCollision = sw == 0 && swv == 0 && sDog == 0;
+
+        while (!noCollision) {
+            x = Greenfoot.getRandomNumber(yarnworld.getWidth());
+            y = Greenfoot.getRandomNumber(yarnworld.getHeight());
+            //sItem = yarnworld.getObjectsAt(x, y, PowerUp.class).size();
+            sw = yarnworld.getObjectsAt(x, y, Wall.class).size();
+            swv = yarnworld.getObjectsAt(x, y, WallVertical.class).size();
+            sDog = yarnworld.getObjectsAt(x, y, Dog.class).size();
+            noCollision = sw == 0 && swv == 0 && sDog == 0;
+        }
+
+        return new int[]{x, y};
+
     }
     
-    /**
-     * Notify Magic Status Display
-     */
-    public void notifyDisplay()
-    {
-        this.display.updateMagicStatus(magicM.getCurrentState());
-    }  
 }
+

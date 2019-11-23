@@ -25,23 +25,13 @@ public class Counter extends Actor
      */
     public void bumpCount(int amount)
     {
-        if(amount<0)
-        {
-            if(totalCount>=10)
-            {
-                totalCount += amount;
-            }
-        }
-        else
-        {
-            
-            totalCount += amount;
-        }
-        //setImage(new GreenfootImage("" + totalCount, 20, Color.WHITE, Color.BLACK));
+        totalCount += amount;
+        setImage(new GreenfootImage("" + totalCount, 20, Color.WHITE, Color.BLACK));
     }
     public int getTotalCount()
     {
-        return totalCount;        
+        return totalCount;
+        
     }
     /*public void score()
     {
