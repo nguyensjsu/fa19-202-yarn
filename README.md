@@ -8,7 +8,7 @@
 * **Yu Zhao**: Task Group 0, documentation, diagram preparation
 
 
-### About Yarn's Story:
+### About Yarn's Story: https://youtu.be/aoWMlE4MoLE
 Once upon a time, there is a naughty dog named Yarn. He loves finding balls in his cozy home and hates dog bomb.
 
 + When Yarn hits a ball, player gets **10** scores and another ball is created randomly in the room.
