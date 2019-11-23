@@ -1,11 +1,11 @@
 # Yarn's Story
 
 ### Team Members and Contributions:
-* Steven Louie  : Task Group 1 (refer to Design Overview diagram below)
-* Mohit Patel: Task Group 4
-* Yueqiao Zhang: Task Group 2, graphic design and video making
-* Danqing Zhao: Task Group 3
-* Yu Zhao: Task Group 0, documentation, diagram preparation
+* **Steven Louie**  : Task Group 1 (refer to Design Overview diagram below)
+* **Mohit Patel**: Task Group 4
+* **Yueqiao Zhang**: Task Group 2, graphic design and video making
+* **Danqing Zhao**: Task Group 3
+* **Yu Zhao**: Task Group 0, documentation, diagram preparation
 
 
 ### About Yarn's Story:
